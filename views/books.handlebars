@@ -1,0 +1,39 @@
+<div style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <h2>Ứng dụng Quản lý Sách</h2>
+
+    <!-- Form thêm sách mới -->
+    <div style="margin: 0 auto 20px auto; padding: 15px; border: 1px solid #ccc; max-width: 500px;">
+        <h3>Thêm sách mới (Quyền Writer)</h3>
+        <form action="/api/books" method="POST">
+            <div style="margin-bottom: 10px;">
+                <input type="text" name="maSanPham" placeholder="Mã sách (Bắt buộc bắt đầu: 094)" required style="width: 100%; padding: 5px; box-sizing: border-box;">
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="text" name="tenSach" placeholder="Tên sách" required style="width: 100%; padding: 5px; box-sizing: border-box;">
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="number" name="giaGoc" placeholder="Giá gốc (VNĐ)" required style="width: 100%; padding: 5px; box-sizing: border-box;">
+            </div>
+            <button type="submit" style="padding: 5px 15px; cursor: pointer;">Thêm vào Cloud</button>
+        </form>
+    </div>
+
+    <!-- Danh sách sách đã lưu -->
+    <h3>Danh sách Sách trên Cloud (Quyền Reader)</h3>
+    <ul style="list-style-type: none; padding: 0;">
+        {{#each books}}
+            <li style="margin-bottom: 10px;"><strong>{{this.maSanPham}}</strong> - {{this.tenSach}} - Giá gốc: {{this.giaGoc}}đ - Giá sau thuế: <strong style="color: red;">{{this.giaSauThue}}đ</strong></li>
+        {{else}}
+            <li>Chưa có cuốn sách nào trong Database. Hãy thêm mới ở form trên!</li>
+        {{/each}}
+    </ul>
+
+    <hr>
+    
+    <!-- Footer bắt buộc theo đề bài -->
+    <footer>
+        <p><strong>Họ tên:</strong> {{hoTen}}</p>
+        <p><strong>MSSV:</strong> {{mssv}}</p>
+        <p><strong>Mức VAT áp dụng:</strong> {{vat}}</p>
+    </footer>
+</div>
